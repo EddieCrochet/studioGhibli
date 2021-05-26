@@ -4,7 +4,6 @@ fetch('https://ghibliapi.herokuapp.com/films')
 })
 .then((data) => {
     //work with data here
-    console.log(data)
     data.forEach((movie) => {
         //creating a div with the card class
         const card = document.createElement('div');
@@ -19,8 +18,14 @@ fetch('https://ghibliapi.herokuapp.com/films')
         movie.description = movie.description.substring(0, 3000);
         p.textContent = `${movie.description}...`;
 
+        const link = document.createElement('a');
+        link.href = "https://www.google.com";
+        link.style.textDecoration = 'none';
+        link.style.color = 'black';
+
         // Append the cards to the container element
-        container.appendChild(card);
+        link.appendChild(card)
+        container.appendChild(link);
 
         // Each child will contain an h1 and a p
         card.appendChild(h1);
@@ -28,6 +33,7 @@ fetch('https://ghibliapi.herokuapp.com/films')
     })
 })
 .catch((err) => {
+    console.log(err);
     //Do something with an error here
     const errorMessage = document.createElement('section');
     errorMessage.setAttribute('class', 'errorSect');
