@@ -24,12 +24,12 @@ fetch('https://ghibliapi.herokuapp.com/films')
         link.style.color = 'black';
 
         // Append the cards to the container element
-        link.appendChild(card)
-        container.appendChild(link);
+        container.appendChild(card);
+        card.appendChild(link);
 
         // Each child will contain an h1 and a p
-        card.appendChild(h1);
-        card.appendChild(p);
+        link.appendChild(h1);
+        link.appendChild(p);
     })
 })
 .catch((err) => {
