@@ -34,10 +34,27 @@ fetch('https://ghibliapi.herokuapp.com/films')
     for(let i = 0; i < cards.length; i++) {
         cards[i].addEventListener('click', function(){
             let curID = data[i].id;
-            let filteredMovie = data.filter(movie => movie.id === curID);
+            let filteredMovie = data.filter(movie => movie.id === curID)[0];
             // clicked on movie from the API is stored in var above
 
-            
+            container.innerHTML = "";
+            // cleared th container.
+            // now we need to add nodes and info for selected movie
+
+            const title = document.createElement('h1');
+            const originalTitle = document.createElement('h2');
+            const romanisedTitle = document.createElement('h2');
+
+            console.log(filteredMovie);
+
+            title.textContent = filteredMovie.title;
+            originalTitle.textContent = filteredMovie.original_title;
+
+            console.log(title);
+            console.log(originalTitle);
+
+            container.appendChild(title);
+            container.appendChild(originalTitle);
         });
     }
 })
