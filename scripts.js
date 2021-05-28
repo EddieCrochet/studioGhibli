@@ -31,10 +31,13 @@ fetch('https://ghibliapi.herokuapp.com/films')
         card.appendChild(p);
     })
     let cards = document.getElementsByClassName("card");
-    console.log(cards);
     for(let i = 0; i < cards.length; i++) {
         cards[i].addEventListener('click', function(){
-            console.log(this);
+            let curID = data[i].id;
+            let filteredMovie = data.filter(movie => movie.id === curID);
+            // clicked on movie from the API is stored in var above
+
+            
         });
     }
 })
