@@ -18,19 +18,25 @@ fetch('https://ghibliapi.herokuapp.com/films')
         movie.description = movie.description.substring(0, 3000);
         p.textContent = `${movie.description}...`;
 
-        const link = document.createElement('a');
-        link.href = "https://www.google.com";
-        link.style.textDecoration = 'none';
-        link.style.color = 'black';
+        //const link = document.createElement('a');
+        //link.href = "individual.html";
+        card.style.textDecoration = 'none';
+        card.style.color = 'black';
 
         // Append the cards to the container element
         container.appendChild(card);
-        card.appendChild(link);
 
         // Each child will contain an h1 and a p
-        link.appendChild(h1);
-        link.appendChild(p);
+        card.appendChild(h1);
+        card.appendChild(p);
     })
+    let cards = document.getElementsByClassName("card");
+    console.log(cards);
+    for(let i = 0; i < cards.length; i++) {
+        cards[i].addEventListener('click', function(){
+            console.log(this);
+        });
+    }
 })
 .catch((err) => {
     console.log(err);
