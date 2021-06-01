@@ -13,11 +13,6 @@ fetch('https://ghibliapi.herokuapp.com/films')
         const h1 = document.createElement('h1');
         h1.textContent = movie.title;
 
-        // create a p and set the text content to the film's description
-        const p = document.createElement('p');
-        movie.description = movie.description.substring(0, 3000);
-        p.textContent = `${movie.description}...`;
-
         //const link = document.createElement('a');
         //link.href = "individual.html";
         card.style.textDecoration = 'none';
@@ -28,7 +23,6 @@ fetch('https://ghibliapi.herokuapp.com/films')
 
         // Each child will contain an h1 and a p
         card.appendChild(h1);
-        card.appendChild(p);
     })
     let cards = document.getElementsByClassName("card");
     for(let i = 0; i < cards.length; i++) {
