@@ -43,8 +43,8 @@ fetch('https://ghibliapi.herokuapp.com/films')
 
             container.innerHTML = "";
             // cleared the container.
-            // now we need to add nodes and info for selected movie
 
+            // add nodes and info for selected movie
             const title = document.createElement('h1');
             const originalTitle = document.createElement('h3');
             const romanisedTitle = document.createElement('h3');
@@ -57,6 +57,7 @@ fetch('https://ghibliapi.herokuapp.com/films')
 
             console.log(filteredMovie);
 
+            //filing in detailed content about clicked on movie
             title.textContent = filteredMovie.title;
             originalTitle.textContent = filteredMovie.original_title;
             romanisedTitle.textContent = `(${filteredMovie.original_title_romanised})`;
@@ -67,7 +68,8 @@ fetch('https://ghibliapi.herokuapp.com/films')
             runTime.textContent = `Run Time: ${filteredMovie.running_time} minutes`;
             desc.textContent = filteredMovie.description;
 
-            card.append(title, originalTitle, romanisedTitle, director, producer, releaseYear, rtScore, runTime, desc);
+            card.append(title, originalTitle, romanisedTitle, director, producer,
+                 releaseYear, rtScore, runTime, desc);
 
             container.appendChild(card);
         });
