@@ -76,7 +76,49 @@ fetch('https://ghibliapi.herokuapp.com/films')
             btnVehicles.innerHTML = "Vehicles";
             
             //applying the neccessary fetch to each
+            btnLocations.addEventListener("click", function() {
+                fetch(filteredMovie.locations[0])
+                    .then((response) => {
+                        return response.json()
+                    })
+                    .then((data) => {
+                        console.log("locations")
+                        console.log(data);
+                    })
+            });
 
+            btnPeople.addEventListener("click", function() {
+                fetch(filteredMovie.people[0])
+                    .then((response) => {
+                        return response.json()
+                    })
+                    .then((data) => {
+                        console.log("People")
+                        console.log(data);
+                    })
+            });
+
+            btnSpecies.addEventListener("click", function() {
+                fetch(filteredMovie.species[0])
+                    .then((response) => {
+                        return response.json()
+                    })
+                    .then((data) => {
+                        console.log("Species")
+                        console.log(data);
+                    })
+            });
+
+            btnVehicles.addEventListener("click", function() {
+                fetch(filteredMovie.vehicles[0])
+                    .then((response) => {
+                        return response.json()
+                    })
+                    .then((data) => {
+                        console.log("Vehicles")
+                        console.log(data);
+                    })
+            });
 
             //append all information and buttons to new card
             card.append(title, originalTitle, romanisedTitle, director, producer,
