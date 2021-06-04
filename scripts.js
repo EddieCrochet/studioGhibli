@@ -50,9 +50,15 @@ fetch('https://ghibliapi.herokuapp.com/films')
             const runTime = document.createElement('h4');
             const desc = document.createElement('p');
 
+            //creating buttons for extra links
+            const btnLocations = document.createElement('button');
+            const btnPeople = document.createElement('button');
+            const btnSpecies = document.createElement('button');
+            const btnVehicles = document.createElement('button');
+
             console.log(filteredMovie);
 
-            //filing in detailed content about clicked on movie
+            //filling in detailed content about clicked on movie
             title.textContent = filteredMovie.title;
             originalTitle.textContent = filteredMovie.original_title;
             romanisedTitle.textContent = `(${filteredMovie.original_title_romanised})`;
@@ -63,8 +69,18 @@ fetch('https://ghibliapi.herokuapp.com/films')
             runTime.textContent = `Run Time: ${filteredMovie.running_time} minutes`;
             desc.textContent = filteredMovie.description;
 
+            //filling in button labels 
+            btnLocations.innerHTML = "Locations";
+            btnPeople.innerHTML = "People";
+            btnSpecies.innerHTML = "Species";
+            btnVehicles.innerHTML = "Vehicles";
+            
+            //applying the neccessary fetch to each
+
+
+            //append all information and buttons to new card
             card.append(title, originalTitle, romanisedTitle, director, producer,
-                 releaseYear, rtScore, runTime, desc);
+                 releaseYear, rtScore, runTime, desc, btnLocations, btnPeople, btnSpecies, btnVehicles);
 
             container.appendChild(card);
         });
