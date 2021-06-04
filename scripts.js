@@ -17,6 +17,7 @@ fetch('https://ghibliapi.herokuapp.com/films')
         //link.href = "individual.html";
         card.style.textDecoration = 'none';
         card.style.color = 'black';
+        card.style.cursor = "pointer";
 
         // Append the cards to the container element
         container.appendChild(card);
