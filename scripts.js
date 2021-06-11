@@ -84,6 +84,7 @@ fetch('https://ghibliapi.herokuapp.com/films')
                     .then((data) => {
                         console.log("locations")
                         console.log(data);
+                        console.log(filteredMovie)
                     })
             });
 
