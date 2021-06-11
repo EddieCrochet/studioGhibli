@@ -56,7 +56,7 @@ fetch('https://ghibliapi.herokuapp.com/films')
             const btnSpecies = document.createElement('button');
             const btnVehicles = document.createElement('button');
 
-            console.log(filteredMovie);
+            //console.log(filteredMovie);
 
             //filling in detailed content about clicked on movie
             title.textContent = filteredMovie.title;
@@ -84,7 +84,22 @@ fetch('https://ghibliapi.herokuapp.com/films')
                     .then((data) => {
                         console.log("locations")
                         console.log(data);
-                        console.log(filteredMovie)
+                        console.log(filteredMovie);
+
+                        const ul = document.createElement('ul');
+                        container.appendChild(ul);
+
+                        // create an li element for each location, and print to page
+                        data.forEach((loc) => {
+                            //create new dom element to hold location data
+                            const domLoc = document.createElement('div');
+
+                            domLoc.innerHTML = 
+                            `${loc.name}, ${loc.climate}, ${loc.terrain}, Surface Water: ${loc.surface_water}%`;
+                            const li = document.createElement('li');
+                            li.appendChild(domLoc);
+                            ul.appendChild(li);
+                        })
                     })
             });
 
