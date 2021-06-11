@@ -74,6 +74,9 @@ fetch('https://ghibliapi.herokuapp.com/films')
             btnPeople.innerHTML = "People";
             btnSpecies.innerHTML = "Species";
             btnVehicles.innerHTML = "Vehicles";
+
+            //create ul element for future uses
+            const ul = document.createElement('ul');
             
             //applying the neccessary fetch to each
             btnLocations.addEventListener("click", function() {
@@ -86,7 +89,6 @@ fetch('https://ghibliapi.herokuapp.com/films')
                         console.log(data);
                         console.log(filteredMovie);
 
-                        const ul = document.createElement('ul');
                         container.appendChild(ul);
 
                         // create an li element for each location, and print to page
@@ -95,7 +97,7 @@ fetch('https://ghibliapi.herokuapp.com/films')
                             const domLoc = document.createElement('div');
 
                             domLoc.innerHTML = 
-                            `${loc.name}, ${loc.climate}, ${loc.terrain}, Surface Water: ${loc.surface_water}%`;
+                            `<b>${loc.name}</b>, Climate: ${loc.climate}, Terrain: ${loc.terrain}, Surface Water: ${loc.surface_water}%`;
                             const li = document.createElement('li');
                             li.appendChild(domLoc);
                             ul.appendChild(li);
