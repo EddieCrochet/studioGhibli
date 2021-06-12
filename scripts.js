@@ -86,34 +86,36 @@ fetch('https://ghibliapi.herokuapp.com/films')
                     })
                     .then((data) => {
                         console.log("locations")
-                        //console.log(data);
+                        console.log(data);
                         //console.log(filteredMovie);
 
-                        container.appendChild(ul);
 
+                        container.appendChild(ul);
                         //this is what I was talking about when I say th data was messed up...
                         // I have to go through all this loop-ception just to get the id string i need to compare
                         for(let i = 0; i < data.length; i++){
                             let curLoc = data[i];
+                           //create new dom element to hold location data
+                            const domLoc = document.createElement('div');
                             for(let j = 0; j < curLoc.films.length; j++){
+                                console.log(curLoc.films.length)
+                                
                                 if(curLoc.films[j].substring(38) == curID){
                                     // HERE IS LOCATIONS OF CURRENT MOVIE
-                                    console.log(curLoc);
+                                    //console.log(curLoc);
+
+                                    domLoc.innerHTML = 
+                                    `<b>${curLoc.name}</b>, Climate: ${curLoc.climate}, Terrain: ${curLoc.terrain}, Surface Water: ${curLoc.surface_water}%`;
+                                    const li = document.createElement('li');
+                                    li.appendChild(domLoc);
+                                    ul.appendChild(li);
                                 }
                             }
                         }
-
-                        // create an li element for each location, and print to page
-                        data.forEach((loc) => {
-                            //create new dom element to hold location data
-                            const domLoc = document.createElement('div');
-
-                            domLoc.innerHTML = 
-                            `<b>${loc.name}</b>, Climate: ${loc.climate}, Terrain: ${loc.terrain}, Surface Water: ${loc.surface_water}%`;
-                            const li = document.createElement('li');
-                            li.appendChild(domLoc);
-                            ul.appendChild(li);
-                        })
+                        if(ul.innerHTML == ""){
+                            //set dom string to something to display if no data here
+                            ul.innerHTML = "nothing to see here";
+                        }
                     })
             });
 
