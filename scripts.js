@@ -86,10 +86,22 @@ fetch('https://ghibliapi.herokuapp.com/films')
                     })
                     .then((data) => {
                         console.log("locations")
-                        console.log(data);
-                        console.log(filteredMovie);
+                        //console.log(data);
+                        //console.log(filteredMovie);
 
                         container.appendChild(ul);
+
+                        //this is what I was talking about when I say th data was messed up...
+                        // I have to go through all this loop-ception just to get the id string i need to compare
+                        for(let i = 0; i < data.length; i++){
+                            let curLoc = data[i];
+                            for(let j = 0; j < curLoc.films.length; j++){
+                                if(curLoc.films[j].substring(38) == curID){
+                                    // HERE IS LOCATIONS OF CURRENT MOVIE
+                                    console.log(curLoc);
+                                }
+                            }
+                        }
 
                         // create an li element for each location, and print to page
                         data.forEach((loc) => {
