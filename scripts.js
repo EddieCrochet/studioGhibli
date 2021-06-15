@@ -53,7 +53,6 @@ fetch('https://ghibliapi.herokuapp.com/films')
             //creating buttons for extra links
             const btnLocations = document.createElement('button');
             const btnPeople = document.createElement('button');
-            const btnSpecies = document.createElement('button');
             const btnVehicles = document.createElement('button');
 
             console.log(filteredMovie);
@@ -72,7 +71,6 @@ fetch('https://ghibliapi.herokuapp.com/films')
             //filling in button labels 
             btnLocations.innerHTML = "Locations";
             btnPeople.innerHTML = "People";
-            btnSpecies.innerHTML = "Species";
             btnVehicles.innerHTML = "Vehicles";
 
             //create ul element for future uses
@@ -146,7 +144,7 @@ fetch('https://ghibliapi.herokuapp.com/films')
                                     //console.log(curLoc);
 
                                     domPpl.innerHTML = 
-                                    `<b>${curPpl.name}</b>, Age: ${curPpl.age}, Eye Color: ${curPpl.eye_color}, Hair Color: ${curPpl.hair_colorr}`;
+                                    `<b>${curPpl.name}</b>, Age: ${curPpl.age}, Eye Color: ${curPpl.eye_color}, Hair Color: ${curPpl.hair_color}`;
                                     const li = document.createElement('li');
                                     li.appendChild(domPpl);
                                     ul.appendChild(li);
@@ -160,17 +158,7 @@ fetch('https://ghibliapi.herokuapp.com/films')
                     })
             });
 
-            btnSpecies.addEventListener("click", function() {
-                fetch(filteredMovie.species[0])
-                    .then((response) => {
-                        return response.json()
-                    })
-                    .then((data) => {
-                        console.log("Species")
-                        console.log(data);
-                    })
-            });
-
+           
             btnVehicles.addEventListener("click", function() {
                 fetch(filteredMovie.vehicles[0])
                     .then((response) => {
@@ -179,12 +167,41 @@ fetch('https://ghibliapi.herokuapp.com/films')
                     .then((data) => {
                         console.log("Vehicles")
                         console.log(data);
+
+                        ul.innerHTML = "";
+
+                        container.appendChild(ul);
+                        //this is what I was talking about when I say th data was messed up...
+                        // I have to go through all this loop-ception just to get the id string i need to compare
+                        for(let i = 0; i < data.length; i++){
+                            let curVehicle = data[i];
+                           //create new dom element to hold location data
+                            const domVehicle = document.createElement('div');
+                            for(let j = 0; j < curVehicle.films.length; j++){
+                                console.log(curVehicle.films.length)
+                                
+                                if(curVehicle.films[j].substring(38) == curID){
+                                    // HERE IS LOCATIONS OF CURRENT MOVIE
+                                    //console.log(curLoc);
+
+                                    domVehicle.innerHTML = 
+                                    `<b>${curVehicle.name}</b>, Vehicle Class: ${curVehicle.vehicle_class}, Description: ${curVehicle.description}, Length: ${curVehicle.length} ft`;
+                                    const li = document.createElement('li');
+                                    li.appendChild(domVehicle);
+                                    ul.appendChild(li);
+                                }
+                            }
+                        }
+                        if(ul.innerHTML == ""){
+                            //set dom string to something to display if no data here
+                            ul.innerHTML = "nothing to see here";
+                        }
                     })
             });
 
             //append all information and buttons to new card
             card.append(title, originalTitle, romanisedTitle, director, producer,
-                 releaseYear, rtScore, runTime, desc, btnLocations, btnPeople, btnSpecies, btnVehicles);
+                 releaseYear, rtScore, runTime, desc, btnLocations, btnPeople, btnVehicles);
 
             container.appendChild(card);
         });
