@@ -56,7 +56,7 @@ fetch('https://ghibliapi.herokuapp.com/films')
             const btnSpecies = document.createElement('button');
             const btnVehicles = document.createElement('button');
 
-            //console.log(filteredMovie);
+            console.log(filteredMovie);
 
             //filling in detailed content about clicked on movie
             title.textContent = filteredMovie.title;
@@ -88,7 +88,8 @@ fetch('https://ghibliapi.herokuapp.com/films')
                         console.log("locations")
                         console.log(data);
                         //console.log(filteredMovie);
-
+                        
+                        ul.innerHTML = "";
 
                         container.appendChild(ul);
                         //this is what I was talking about when I say th data was messed up...
@@ -127,6 +128,35 @@ fetch('https://ghibliapi.herokuapp.com/films')
                     .then((data) => {
                         console.log("People")
                         console.log(data);
+
+                        ul.innerHTML = "";
+
+                        container.appendChild(ul);
+                        //this is what I was talking about when I say th data was messed up...
+                        // I have to go through all this loop-ception just to get the id string i need to compare
+                        for(let i = 0; i < data.length; i++){
+                            let curPpl = data[i];
+                           //create new dom element to hold location data
+                            const domPpl = document.createElement('div');
+                            for(let j = 0; j < curPpl.films.length; j++){
+                                console.log(curPpl.films.length)
+                                
+                                if(curPpl.films[j].substring(38) == curID){
+                                    // HERE IS LOCATIONS OF CURRENT MOVIE
+                                    //console.log(curLoc);
+
+                                    domPpl.innerHTML = 
+                                    `<b>${curPpl.name}</b>, Age: ${curPpl.age}, Eye Color: ${curPpl.eye_color}, Hair Color: ${curPpl.hair_colorr}`;
+                                    const li = document.createElement('li');
+                                    li.appendChild(domPpl);
+                                    ul.appendChild(li);
+                                }
+                            }
+                        }
+                        if(ul.innerHTML == ""){
+                            //set dom string to something to display if no data here
+                            ul.innerHTML = "nothing to see here";
+                        }
                     })
             });
 
