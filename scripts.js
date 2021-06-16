@@ -219,6 +219,8 @@ fetch('https://ghibliapi.herokuapp.com/films')
 const app = document.getElementById('root');
 
 const logo = document.createElement('img');
+logo.setAttribute('onclick', 'location.reload()');
+logo.style.cursor = "pointer";
 logo.src = 'logo.png';
 
 const container = document.createElement('div');
