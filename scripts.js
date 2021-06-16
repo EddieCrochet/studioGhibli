@@ -73,8 +73,6 @@ fetch('https://ghibliapi.herokuapp.com/films')
             btnPeople.innerHTML = "People";
             btnVehicles.innerHTML = "Vehicles";
 
-            //create ul element for future uses
-            const ul = document.createElement('ul');
             
             //applying the neccessary fetch to each
             btnLocations.addEventListener("click", function() {
@@ -83,38 +81,7 @@ fetch('https://ghibliapi.herokuapp.com/films')
                         return response.json()
                     })
                     .then((data) => {
-                        console.log("locations")
-                        console.log(data);
-                        //console.log(filteredMovie);
-                        
-                        ul.innerHTML = "";
-
-                        container.appendChild(ul);
-                        //this is what I was talking about when I say th data was messed up...
-                        // I have to go through all this loop-ception just to get the id string i need to compare
-                        for(let i = 0; i < data.length; i++){
-                            let curLoc = data[i];
-                           //create new dom element to hold location data
-                            const domLoc = document.createElement('div');
-                            for(let j = 0; j < curLoc.films.length; j++){
-                                console.log(curLoc.films.length)
-                                
-                                if(curLoc.films[j].substring(38) == curID){
-                                    // HERE IS LOCATIONS OF CURRENT MOVIE
-                                    //console.log(curLoc);
-
-                                    domLoc.innerHTML = 
-                                    `<b>${curLoc.name}</b>, Climate: ${curLoc.climate}, Terrain: ${curLoc.terrain}, Surface Water: ${curLoc.surface_water}%`;
-                                    const li = document.createElement('li');
-                                    li.appendChild(domLoc);
-                                    ul.appendChild(li);
-                                }
-                            }
-                        }
-                        if(ul.innerHTML == ""){
-                            //set dom string to something to display if no data here
-                            ul.innerHTML = "nothing to see here";
-                        }
+                        moreMovieDetails(data, curID);
                     })
             });
 
@@ -215,6 +182,43 @@ fetch('https://ghibliapi.herokuapp.com/films')
     errorMessage.textContent = 'Gahsh dahg nahbbit! Aint wrkin.';
     app.appendChild(errorMessage);
 })
+
+const moreMovieDetails = (data, curID) => {
+    console.log(data);
+    //console.log(filteredMovie);
+    
+    ul.innerHTML = "";
+
+    container.appendChild(ul);
+    //this is what I was talking about when I say th data was messed up...
+    // I have to go through all this loop-ception just to get the id string i need to compare
+    for(let i = 0; i < data.length; i++){
+        let cur = data[i];
+    //create new dom element to hold location data
+        const domEl = document.createElement('div');
+        for(let j = 0; j < cur.films.length; j++){
+            console.log(cur.films.length)
+            
+            if(cur.films[j].substring(38) == curID){
+                // HERE IS LOCATIONS OF CURRENT MOVIE
+                //console.log(curLoc);
+
+                domEl.innerHTML = 
+                `<b>${cur.name}</b>, Climate: ${cur.climate || cur.age || cur.vehicle_class}, Terrain: ${cur.terrain || cur.eye_color || cur.description}, Surface Water: ${cur.surface_water || cur.hair_color || cur.length}%`;
+                const li = document.createElement('li');
+                li.appendChild(domEl);
+                ul.appendChild(li);
+            }
+        }
+    }
+    if(ul.innerHTML == ""){
+        //set dom string to something to display if no data here
+        ul.innerHTML = "nothing to see here";
+    }
+}
+
+//create ul element for future uses
+const ul = document.createElement('ul');
 
 const app = document.getElementById('root');
 
