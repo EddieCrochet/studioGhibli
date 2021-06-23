@@ -169,7 +169,7 @@ const moreMovieDetails = (data, curID) => {
                 //console.log(curLoc);
 
                 domEl.innerHTML = 
-                `<b>${cur.name}</b>, ${prop1}: ${cur.climate || cur.age || cur.vehicle_class}, ${prop2}: ${cur.terrain || cur.eye_color || cur.description}, ${prop3}: ${cur.surface_water || cur.hair_color || cur.length}%`;
+                `<b>${cur.name}</b>, ${prop1}: ${cur[prop1]}, ${prop2}: ${cur[prop2]}, ${prop3}: ${cur[prop3]}`;
                 const li = document.createElement('li');
                 li.appendChild(domEl);
                 ul.appendChild(li);
