@@ -91,37 +91,7 @@ fetch('https://ghibliapi.herokuapp.com/films')
                         return response.json()
                     })
                     .then((data) => {
-                        console.log("People")
-                        console.log(data);
-
-                        ul.innerHTML = "";
-
-                        container.appendChild(ul);
-                        //this is what I was talking about when I say th data was messed up...
-                        // I have to go through all this loop-ception just to get the id string i need to compare
-                        for(let i = 0; i < data.length; i++){
-                            let curPpl = data[i];
-                           //create new dom element to hold location data
-                            const domPpl = document.createElement('div');
-                            for(let j = 0; j < curPpl.films.length; j++){
-                                console.log(curPpl.films.length)
-                                
-                                if(curPpl.films[j].substring(38) == curID){
-                                    // HERE IS LOCATIONS OF CURRENT MOVIE
-                                    //console.log(curLoc);
-
-                                    domPpl.innerHTML = 
-                                    `<b>${curPpl.name}</b>, Age: ${curPpl.age}, Eye Color: ${curPpl.eye_color}, Hair Color: ${curPpl.hair_color}`;
-                                    const li = document.createElement('li');
-                                    li.appendChild(domPpl);
-                                    ul.appendChild(li);
-                                }
-                            }
-                        }
-                        if(ul.innerHTML == ""){
-                            //set dom string to something to display if no data here
-                            ul.innerHTML = "nothing to see here";
-                        }
+                        moreMovieDetails(data, curID);
                     })
             });
 
@@ -132,37 +102,7 @@ fetch('https://ghibliapi.herokuapp.com/films')
                         return response.json()
                     })
                     .then((data) => {
-                        console.log("Vehicles")
-                        console.log(data);
-
-                        ul.innerHTML = "";
-
-                        container.appendChild(ul);
-                        //this is what I was talking about when I say th data was messed up...
-                        // I have to go through all this loop-ception just to get the id string i need to compare
-                        for(let i = 0; i < data.length; i++){
-                            let curVehicle = data[i];
-                           //create new dom element to hold location data
-                            const domVehicle = document.createElement('div');
-                            for(let j = 0; j < curVehicle.films.length; j++){
-                                console.log(curVehicle.films.length)
-                                
-                                if(curVehicle.films[j].substring(38) == curID){
-                                    // HERE IS LOCATIONS OF CURRENT MOVIE
-                                    //console.log(curLoc);
-
-                                    domVehicle.innerHTML = 
-                                    `<b>${curVehicle.name}</b>, Vehicle Class: ${curVehicle.vehicle_class}, Description: ${curVehicle.description}, Length: ${curVehicle.length} ft`;
-                                    const li = document.createElement('li');
-                                    li.appendChild(domVehicle);
-                                    ul.appendChild(li);
-                                }
-                            }
-                        }
-                        if(ul.innerHTML == ""){
-                            //set dom string to something to display if no data here
-                            ul.innerHTML = "nothing to see here";
-                        }
+                        moreMovieDetails(data, curID);
                     })
             });
 
@@ -184,8 +124,33 @@ fetch('https://ghibliapi.herokuapp.com/films')
 })
 
 const moreMovieDetails = (data, curID) => {
-    console.log(data);
+    //console.log(data[0]);
     //console.log(filteredMovie);
+    const propNames = Object.getOwnPropertyNames(data[0]);
+
+    //setting the property name for each respective set of data
+    let prop1, prop2, prop3;
+
+    if(propNames.includes('climate' && 'terrain' && 'surface_water')){
+        prop1 = 'climate';
+        prop2 = 'terrain';
+        prop3 = 'surface_water';
+    } else if (propNames.includes('age' && 'eye_color' && 'hair_color')) {
+        prop1 = 'age';
+        prop2 = 'eye_color';
+        prop3 = 'hair_color';
+    } else if (propNames.includes('vehicle_class' && 'description' && 'length')) {
+        prop1 = 'vehicle_class';
+        prop2 = 'description';
+        prop3 = 'length';
+    }
+
+    //my attempt to not do the above with all those if statements... not working so far
+    // let prop1 = propNames.filter(el => el === ('climate' || 'age' || 'vehicle_class'));
+    // let prop2 = propNames.filter(el => el === ('terrain' || 'eye_color' || 'description'));
+    // let prop3 = propNames.filter(el => el === ('surface_water' || 'hair_color' || 'length'));
+
+    console.log(prop1, prop2, prop3)
     
     ul.innerHTML = "";
 
@@ -204,7 +169,7 @@ const moreMovieDetails = (data, curID) => {
                 //console.log(curLoc);
 
                 domEl.innerHTML = 
-                `<b>${cur.name}</b>, Climate: ${cur.climate || cur.age || cur.vehicle_class}, Terrain: ${cur.terrain || cur.eye_color || cur.description}, Surface Water: ${cur.surface_water || cur.hair_color || cur.length}%`;
+                `<b>${cur.name}</b>, ${prop1}: ${cur.climate || cur.age || cur.vehicle_class}, ${prop2}: ${cur.terrain || cur.eye_color || cur.description}, ${prop3}: ${cur.surface_water || cur.hair_color || cur.length}%`;
                 const li = document.createElement('li');
                 li.appendChild(domEl);
                 ul.appendChild(li);

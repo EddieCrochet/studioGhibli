@@ -9,11 +9,13 @@
   
   .container {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
   }
   
   .card {
     margin: 1rem;
+    padding: 2rem;
     border: 1px solid gray;
   }
   
