@@ -36,6 +36,9 @@ fetch('https://ghibliapi.herokuapp.com/films')
             let filteredMovie = data.filter(movie => movie.id === curID)[0];
             // clicked on movie from the API is stored in var above
 
+            const back = document.getElementById('back');
+            back.style.display = 'block';
+
             container.innerHTML = "";
             // cleared the container.
 
