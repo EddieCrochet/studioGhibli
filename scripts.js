@@ -16,12 +16,15 @@ fetch('https://ghibliapi.herokuapp.com/films')
         // Append the cards to the container element
         container.appendChild(card);
 
-        // Each child will contain an h1 and a p
+        // Each child will contain an h1
         card.appendChild(h1);
     })
     let cards = document.getElementsByClassName("card");
     for(let i = 0; i < cards.length; i++) {
         cards[i].addEventListener('click', function(){
+            //only making the container a column after you click on a movie makes the display of movies lay out much nicer
+            container.style.flexDirection = "column";
+
             //creating a div with the card class
             const card = document.createElement('div');
             card.setAttribute('class', 'card');

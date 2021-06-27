@@ -4,29 +4,29 @@ body{
 #root {
     max-width: 1200px;
     margin: 0 auto;
-  }
+}
 
-  .logo{
+.logo{
     cursor: pointer;
-  }
+}
   
-  .container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
+#container {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1 1 100%;
+}
 
-  #back{
+#back{
     display:none;
     color: rgb(255, 255, 163);
-  }
-  nav{
+}
+nav{
     display: flex;
     align-items: center;
     justify-content: space-between;
-  }
+}
   
-  .card {
+.card {
     margin: 1rem;
     padding: 2rem;
     background-image: radial-gradient(rgb(217, 119, 255) , rgb(114, 158, 39));
@@ -34,26 +34,25 @@ body{
     align-items: center;
     flex-direction: column;
     cursor:pointer;
-    color:black;
     text-decoration: none;
-  }
+}
 
-  #movieDeets{
+#movieDeets{
     background-image: radial-gradient(rgb(255, 255, 137), rgb(114, 158, 39));
     display: flex;
     align-items: center;
     flex-direction:column ;
     list-style-type: none;
-  }
+}
   
-  @media screen and (min-width: 600px) {
+@media screen and (max-width: 900px) {
     .card {
-      flex: 1 1 calc(50% - 2rem);
+      flex: 1 1 50%;
     }
-  }
+}
   
-  @media screen and (min-width: 900px) {
+@media screen and (min-width: 900px) {
     .card {
-      flex: 1 1 calc(33% - 2rem);
+      flex: 1 1 33%;
     }
-  }
+}
