@@ -106,9 +106,16 @@ fetch('https://ghibliapi.herokuapp.com/films')
                     })
             });
 
-            //append all information and buttons to new card
+            // creating an element for the buttons to sit in together
+            const btns = document.createElement('div');
+            btns.append(btnLocations, btnPeople, btnVehicles);
+
+            //append all information to new card
             card.append(title, originalTitle, romanisedTitle, director, producer,
-                 releaseYear, rtScore, runTime, desc, btnLocations, btnPeople, btnVehicles);
+                 releaseYear, rtScore, runTime, desc);
+
+            //prepend buttons to the top of the card for visibility
+            card.prepend(btns);
 
             container.appendChild(card);
         });
@@ -124,6 +131,10 @@ fetch('https://ghibliapi.herokuapp.com/films')
 })
 
 const moreMovieDetails = (data, curID) => {
+    // const cardDOM = document.getElementsByClassName('card')[0];
+    // cardDOM.innerHTML = "";
+    // cardDOM.appendChild(btnLocations);
+
     //console.log(data[0]);
     //console.log(filteredMovie);
     const propNames = Object.getOwnPropertyNames(data[0]);
@@ -154,7 +165,7 @@ const moreMovieDetails = (data, curID) => {
     
     ul.innerHTML = "";
 
-    container.appendChild(ul);
+    container.prepend(ul);
     ul.setAttribute('id', 'movieDeets')
     //this is what I was talking about when I say th data was messed up...
     // I have to go through all this loop-ception just to get the id string i need to compare
