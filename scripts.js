@@ -155,6 +155,7 @@ const moreMovieDetails = (data, curID) => {
     ul.innerHTML = "";
 
     container.appendChild(ul);
+    ul.setAttribute('id', 'movieDeets')
     //this is what I was talking about when I say th data was messed up...
     // I have to go through all this loop-ception just to get the id string i need to compare
     for(let i = 0; i < data.length; i++){

@@ -1,3 +1,6 @@
+body{
+  background-color:rgb(114, 158, 39);
+}
 #root {
     max-width: 1200px;
     margin: 0 auto;
@@ -16,7 +19,18 @@
   .card {
     margin: 1rem;
     padding: 2rem;
-    border: 1px solid gray;
+    background-image: radial-gradient(rgb(217, 119, 255) , rgb(114, 158, 39));
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  #movieDeets{
+    background-image: radial-gradient(rgb(255, 255, 137), rgb(114, 158, 39));
+    display: flex;
+    align-items: center;
+    flex-direction:column ;
+    list-style-type: none;
   }
   
   @media screen and (min-width: 600px) {
