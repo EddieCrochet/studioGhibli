@@ -1,5 +1,5 @@
 body{
-  background-color:rgb(114, 158, 39);
+  background-color:rgb(214, 255, 143);
 }
 #root {
     max-width: 1200px;
@@ -18,7 +18,6 @@ body{
 
 #back{
     display:none;
-    color: rgb(255, 255, 163);
 }
 nav{
     display: flex;
@@ -29,7 +28,7 @@ nav{
 .card {
     margin: 1rem;
     padding: 2rem;
-    background-image: radial-gradient(rgb(217, 119, 255) , rgb(114, 158, 39));
+    background-image: radial-gradient(rgb(217, 119, 255) , rgb(214, 255, 143));
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -38,10 +37,10 @@ nav{
 }
 
 #movieDeets{
-    background-image: radial-gradient(rgb(255, 255, 137), rgb(114, 158, 39));
+    background-image: radial-gradient(rgb(170, 255, 137), rgb(214, 255, 143));
     display: flex;
     align-items: center;
-    flex-direction:column ;
+    flex-direction:column;
     list-style-type: none;
 }
   
