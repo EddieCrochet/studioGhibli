@@ -162,7 +162,10 @@ const moreMovieDetails = (data, curID) => {
                 //console.log(curLoc);
 
                 domEl.innerHTML = 
-                `<b>${cur.name}</b>, ${prop1}: ${cur[prop1]}, ${prop2}: ${cur[prop2]}, ${prop3}: ${cur[prop3]}`;
+                `<b>${cur.name}</b>: 
+                    <u>${prop1.replace('_', ' ')}</u>: <i>${cur[prop1]}</i> 
+                    <u>${prop2.replace('_', ' ')}</u>: <i>${cur[prop2]}</i> 
+                    <u>${prop3.replace('_', ' ')}</u>: <i>${cur[prop3]}</i>`;
                 const li = document.createElement('li');
                 li.appendChild(domEl);
                 ul.appendChild(li);
