@@ -73,38 +73,19 @@ fetch('https://ghibliapi.herokuapp.com/films')
             btnPeople.innerHTML = "People";
             btnVehicles.innerHTML = "Vehicles";
 
-            
-            //applying the neccessary fetch to each
-            btnLocations.addEventListener("click", function() {
-                fetch(filteredMovie.locations[0])
-                    .then((response) => {
-                        return response.json()
-                    })
-                    .then((data) => {
-                        moreMovieDetails(data, curID);
-                    })
-            });
-
-            btnPeople.addEventListener("click", function() {
-                fetch(filteredMovie.people[0])
-                    .then((response) => {
-                        return response.json()
-                    })
-                    .then((data) => {
-                        moreMovieDetails(data, curID);
-                    })
-            });
-
-           
-            btnVehicles.addEventListener("click", function() {
-                fetch(filteredMovie.vehicles[0])
-                    .then((response) => {
-                        return response.json()
-                    })
-                    .then((data) => {
-                        moreMovieDetails(data, curID);
-                    })
-            });
+            //applying the neccessary fetch to each button using an array of all my buttons
+            let allBtns = [btnLocations, btnPeople, btnVehicles];
+            allBtns.forEach((butn) => {
+                butn.addEventListener("click", function() {
+                    fetch(filteredMovie[butn.innerHTML.toLowerCase()][0])
+                        .then((response) => {
+                            return response.json()
+                        })
+                        .then((data) => {
+                            moreMovieDetails(data, curID);
+                        })
+                });
+            })
 
             // creating an element for the buttons to sit in together
             const btns = document.createElement('div');
