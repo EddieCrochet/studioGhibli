@@ -1,5 +1,5 @@
 body{
-  background-color:rgb(214, 255, 143);
+  background-color:rgb(194, 207, 176);
 }
 #root {
     max-width: 1200px;
@@ -28,7 +28,7 @@ nav{
 .card {
     margin: 1rem;
     padding: 2rem;
-    background-image: radial-gradient(rgb(217, 119, 255) , rgb(214, 255, 143));
+    background-image: radial-gradient(rgb(217, 119, 255) , rgb(194, 207, 176));
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -37,7 +37,7 @@ nav{
 }
 
 #movieDeets{
-    background-image: radial-gradient(rgb(170, 255, 137), rgb(214, 255, 143));
+    background-image: radial-gradient(rgb(170, 255, 137), rgb(194, 207, 176));
     display: flex;
     align-items: center;
     flex-direction:column;
